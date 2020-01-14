@@ -15,6 +15,7 @@ fun main(args: Array<String>) {
     var left = true
 
     val iterator = terms.iterator()
+
     while (iterator.hasNext()) {
         val t = iterator.next()
         if (t == "=") {
@@ -28,25 +29,16 @@ fun main(args: Array<String>) {
 
     termList.sortByDescending { term -> term.degree }
 
-    var leftTerms = mutableMapOf<Int, Term>()
-    var rightTerms = mutableMapOf<Int, Term>()
-
-    populateMap(leftTerms, termList, true)
-    populateMap(rightTerms, termList, false)
-
-
-    println(leftTerms)
-    println(rightTerms)
+    var leftTerms = populateMap(termList, true)
+    var rightTerms = populateMap(termList, false)
 
     mergeTerms(leftTerms, rightTerms)
 
-    println(leftTerms)
-
-    println("Polynomial degree: ${termList[0].degree}")
-
+    solve(leftTerms)
 }
 
-fun populateMap(map: MutableMap<Int, Term>, termList: MutableList<Term>, left: Boolean) {
+fun populateMap(termList: MutableList<Term>, left: Boolean): MutableMap<Int, Term> {
+    var map = mutableMapOf<Int, Term>()
     for (term in termList) {
         if (term.left != left) continue
 
@@ -58,6 +50,7 @@ fun populateMap(map: MutableMap<Int, Term>, termList: MutableList<Term>, left: B
         }
         map[curr.degree] = curr
     }
+    return map
 }
 
 fun mergeTerms(left: MutableMap<Int, Term>, right: MutableMap<Int, Term>){
@@ -65,20 +58,11 @@ fun mergeTerms(left: MutableMap<Int, Term>, right: MutableMap<Int, Term>){
         run {
             var curr = left[i]
             if (curr != null) {
-                curr += term
+                curr -= term
             } else {
                 curr = term
             }
             left[i] = curr
         }
     }
-}
-
-fun bacon(moo: Any) {
-    if (moo !is String) {
-        return
-    }
-
-    moo.length
-
 }

@@ -2,7 +2,7 @@ package zfaria.computor
 
 class Term(term: String, var left: Boolean, negative: Boolean = false) {
 
-    var coefficient: Double
+    var coefficient: Float
 
     var degree: Int
 
@@ -11,22 +11,21 @@ class Term(term: String, var left: Boolean, negative: Boolean = false) {
     init {
         val terms = term.split("*")
 
-        coefficient = terms[0].trim().toDouble()
+        coefficient = terms[0].trim().toFloatOrNull() ?: 1f
 
         if (negative) {
             coefficient = -coefficient
         }
 
-        if (terms.size == 1) {
-            degree = 0
-        }
+        degree = 0
+        if (terms.size != 1) {
+            val exp = terms[1].split("^")
 
-        val exp = terms[1].split("^")
-
-        if (exp.size == 1) {
-            degree = 1
-        } else {
-            degree = exp[1].trim().toInt()
+            if (exp.size == 1) {
+                degree = 1
+            } else {
+                degree = exp[1].trim().toInt()
+            }
         }
     }
 
@@ -36,6 +35,12 @@ class Term(term: String, var left: Boolean, negative: Boolean = false) {
 
     operator fun plus(term: Term): Term {
         coefficient += term.coefficient
+
+        return this
+    }
+
+    operator fun minus(term: Term): Term {
+        coefficient -= term.coefficient;
 
         return this
     }
