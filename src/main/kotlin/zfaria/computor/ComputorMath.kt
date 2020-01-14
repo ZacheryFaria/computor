@@ -63,8 +63,6 @@ fun quadTwoSol(disc: Float, b: Float, a: Float) {
     println(sec)
 }
 
-
-
 fun quadOneSol(disc: Float, b: Float, a: Float) {
     var sol = -b / 2 * a
 
@@ -73,9 +71,13 @@ fun quadOneSol(disc: Float, b: Float, a: Float) {
 }
 
 fun quadImagSol(res: Float, b: Float, a: Float) {
+    var res = sqrt(-res)
 
+    var div = 2 * a
 
     println("Discriminant is strictly negative, the two solutions are:")
+    println("${b/div} + ${res/div}i")
+    println("${b/div} - ${res/div}i")
 }
 
 fun solveLinear(map: MutableMap<Int, Term>) {
@@ -89,7 +91,7 @@ fun solveLinear(map: MutableMap<Int, Term>) {
 }
 
 fun cantSolve() {
-    println("The polynomial degree is strictly greater than 2, I can't solve.")
+    println("The polynomial degree is greater than 2, I can't solve.")
 }
 
 fun noDegree(term: Term) {
