@@ -76,8 +76,8 @@ fun quadImagSol(res: Float, b: Float, a: Float) {
     var div = 2 * a
 
     println("Discriminant is strictly negative, the two solutions are:")
-    println("${b/div} + ${res/div}i")
-    println("${b/div} - ${res/div}i")
+    println("${-b/div} + ${res/div}i")
+    println("${-b/div} - ${res/div}i")
 }
 
 fun solveLinear(map: MutableMap<Int, Term>) {
