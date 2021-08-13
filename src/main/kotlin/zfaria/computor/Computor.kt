@@ -2,7 +2,7 @@ package zfaria.computor
 
 fun main(args: Array<String>) {
     if (args.isEmpty()) {
-        println("No arguments given.")
+        println("No ok given.")
         return
     }
 
