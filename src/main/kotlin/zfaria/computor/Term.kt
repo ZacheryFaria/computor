@@ -1,5 +1,19 @@
 package zfaria.computor
 
+func Lol() {
+    println("lol")
+    var fuck: Float
+
+    fuck = 3.14
+
+    fuck = fuck * 2
+
+    println("fuck")
+
+    println(fuck)
+
+}
+
 class Term(term: String, var left: Boolean, negative: Boolean = false) {
 
     var coefficient: Float
