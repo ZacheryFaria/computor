@@ -1,6 +1,22 @@
 package zfaria.computor
 
 fun main(args: Array<String>) {
+    if (args.isEmpty()) {
+        println("No ok given.")
+        return
+    }
+
+    val reg = Regex("(?<=[+\\-=])|(?=[+\\-=])")
+
+    val terms = args[0].split(reg)
+
+    val termList = mutableListOf<Term>()
+
+    var left = true
+
+    val iterator = terms.iterator()
+
+    while (iterator.hasNext()) {
         val t = iterator.next()
         if (t == "=") {
             left = false
